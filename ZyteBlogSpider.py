@@ -10,6 +10,7 @@ class BlogSpider(scrapy.Spider):
         for title in response.css('.oxy-post-title'):
             yield {'title ': title.css('::text').get()}
 
+        # Next button is an 'a' tag with class of next
         for next_page in response.css('a.next'):
             yield response.follow(next_page, self.parse)
 
